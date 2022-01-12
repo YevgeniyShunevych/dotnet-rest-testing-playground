@@ -21,7 +21,7 @@ namespace RestTestingPlayground.Tests.Todo
         public void SetUp()
         {
             _mockServer = WireMockServer.Start();
-            _restClient = new RestClient($"{_mockServer.Urls[0]}/todos");
+            _restClient = new RestClient($"{_mockServer.Urls[0]}");
         }
 
         [TearDown]
@@ -35,10 +35,10 @@ namespace RestTestingPlayground.Tests.Todo
         {
             var setupItem = new TodoItem
             {
-                Id = 1,
-                UserId = 1,
-                Title = "delectus aut autem",
-                Completed = false
+                Id = 3,
+                UserId = 9,
+                Title = "Some title",
+                Completed = true
             };
 
             _mockServer
@@ -47,7 +47,7 @@ namespace RestTestingPlayground.Tests.Todo
                     .WithStatusCode(HttpStatusCode.OK)
                     .WithBodyAsJson(setupItem));
 
-            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("1"));
+            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/todos/1"));
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Data.Should().BeEquivalentTo(setupItem);
