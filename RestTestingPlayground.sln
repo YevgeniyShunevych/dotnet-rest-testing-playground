@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestTestingPlayground.Tests", "test\RestTestingPlayground.Tests\RestTestingPlayground.Tests.csproj", "{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestTestingPlayground.Tests", "test\RestTestingPlayground.Tests\RestTestingPlayground.Tests.csproj", "{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F66DF90E-AC21-4F22-BD4B-186289DC3C00}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestTestingPlayground.Api", "src\RestTestingPlayground.Api\RestTestingPlayground.Api.csproj", "{1A1E3161-A98E-4A5B-BB28-1B426FAD66E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A1E3161-A98E-4A5B-BB28-1B426FAD66E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1E3161-A98E-4A5B-BB28-1B426FAD66E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1E3161-A98E-4A5B-BB28-1B426FAD66E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1E3161-A98E-4A5B-BB28-1B426FAD66E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
