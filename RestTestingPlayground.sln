@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestTestingPlayground.Tests", "test\RestTestingPlayground.Tests\RestTestingPlayground.Tests.csproj", "{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F66DF90E-AC21-4F22-BD4B-186289DC3C00}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D7A536-0DF3-418C-8874-D3C2B39CDFA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F409C140-5DA0-4F8B-BA97-72540E4A1121}
+	EndGlobalSection
+EndGlobal
