@@ -27,7 +27,7 @@ namespace RestTestingPlayground.Tests.Todo
         [TearDown]
         public void TearDown()
         {
-            _mockServer.Stop();
+            _mockServer.Dispose();
         }
 
         [Test]
