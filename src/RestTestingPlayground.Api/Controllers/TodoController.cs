@@ -7,14 +7,14 @@ namespace RestTestingPlayground.Api.Controllers
     [Route("todos")]
     public class TodoController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("{id}")]
         public TodoItem Get(int id)
         {
             return new TodoItem
             {
                 Id = id,
                 UserId = 1,
-                Title = "delectus aut autem",
+                Title = "Test",
                 Completed = false
             };
         }
