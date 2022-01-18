@@ -52,6 +52,7 @@ namespace RestTestingPlayground.Tests
         }
 
         [Test]
+        [Explicit]
         public async Task Get()
         {
             var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/todos/1"));
