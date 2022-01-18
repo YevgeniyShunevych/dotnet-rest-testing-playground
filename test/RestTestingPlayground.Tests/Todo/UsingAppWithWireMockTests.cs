@@ -51,7 +51,7 @@ namespace RestTestingPlayground.Tests.Todo
         }
 
         [Test]
-        public async Task Get_External()
+        public async Task Get()
         {
             var setupItem = new TodoItem
             {
