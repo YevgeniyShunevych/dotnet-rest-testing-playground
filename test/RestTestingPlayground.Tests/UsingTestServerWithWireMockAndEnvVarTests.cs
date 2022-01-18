@@ -16,7 +16,7 @@ using WireMock.Server;
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingTestServerWithWireMockTests
+    public class UsingTestServerWithWireMockAndEnvVarTests
     {
         private WireMockServer _externalServiceMock;
 
@@ -67,7 +67,7 @@ namespace RestTestingPlayground.Tests
                     .WithStatusCode(HttpStatusCode.OK)
                     .WithBodyAsJson(setupItem));
 
-            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externaltodos/1"));
+            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externalviaenvtodos/1"));
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Data.Should().BeEquivalentTo(setupItem);

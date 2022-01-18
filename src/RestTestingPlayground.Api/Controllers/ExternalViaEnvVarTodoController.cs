@@ -7,8 +7,8 @@ using RestTestingPlayground.Api.Models;
 namespace RestTestingPlayground.Api.Controllers
 {
     [ApiController]
-    [Route("externaltodos")]
-    public class ExternalTodoController : ControllerBase
+    [Route("externalviaenvtodos")]
+    public class ExternalViaEnvVarTodoController : ControllerBase
     {
         [HttpGet("{id}")]
         public async Task<TodoItem> Get(int id)
