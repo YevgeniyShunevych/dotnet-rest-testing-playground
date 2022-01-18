@@ -2,7 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using NUnit.Framework;
 using RestSharp;
 using RestTestingPlayground.Api;
@@ -13,7 +14,7 @@ namespace RestTestingPlayground.Tests.Todo
     [TestFixture]
     public class UsingAppTests
     {
-        private WebApplicationFactory<Startup> _applicationFactory;
+        private TestServer _testServer;
 
         private HttpClient _httpClient;
 
@@ -22,12 +23,12 @@ namespace RestTestingPlayground.Tests.Todo
         [SetUp]
         public void SetUp()
         {
-            _applicationFactory = new WebApplicationFactory<Startup>()
-                .WithWebHostBuilder(builder =>
-                {
-                });
+            var webHostBuilder = new WebHostBuilder()
+                .UseStartup<Startup>();
 
-            _httpClient = _applicationFactory.CreateClient();
+            _testServer = new TestServer(webHostBuilder);
+
+            _httpClient = _testServer.CreateClient();
             _restClient = new RestClient(_httpClient, new RestClientOptions(_httpClient.BaseAddress));
         }
 
@@ -35,7 +36,7 @@ namespace RestTestingPlayground.Tests.Todo
         public void TearDown()
         {
             _httpClient.Dispose();
-            _applicationFactory.Dispose();
+            _testServer.Dispose();
         }
 
         [Test]

@@ -3,7 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using NUnit.Framework;
 using RestSharp;
 using RestTestingPlayground.Api;
@@ -19,7 +20,7 @@ namespace RestTestingPlayground.Tests.Todo
     {
         private WireMockServer _externalServiceMock;
 
-        private WebApplicationFactory<Startup> _applicationFactory;
+        private TestServer _testServer;
 
         private HttpClient _httpClient;
 
@@ -32,12 +33,12 @@ namespace RestTestingPlayground.Tests.Todo
 
             Environment.SetEnvironmentVariable("EXTERNAL_SERVICE_URL", _externalServiceMock.Urls[0]);
 
-            _applicationFactory = new WebApplicationFactory<Startup>()
-                .WithWebHostBuilder(builder =>
-                {
-                });
+            var webHostBuilder = new WebHostBuilder()
+                .UseStartup<Startup>();
 
-            _httpClient = _applicationFactory.CreateClient();
+            _testServer = new TestServer(webHostBuilder);
+
+            _httpClient = _testServer.CreateClient();
             _restClient = new RestClient(_httpClient, new RestClientOptions(_httpClient.BaseAddress));
         }
 
@@ -46,7 +47,7 @@ namespace RestTestingPlayground.Tests.Todo
         {
             _externalServiceMock.Dispose();
             _httpClient.Dispose();
-            _applicationFactory.Dispose();
+            _testServer.Dispose();
         }
 
         [Test]
