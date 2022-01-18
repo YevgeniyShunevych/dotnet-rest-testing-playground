@@ -16,7 +16,7 @@ using WireMock.Server;
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingAppWithWireMockTests
+    public class UsingTestServerWithWireMockTests
     {
         private WireMockServer _externalServiceMock;
 

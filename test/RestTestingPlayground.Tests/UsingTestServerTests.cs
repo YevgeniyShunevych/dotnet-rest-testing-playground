@@ -12,7 +12,7 @@ using RestTestingPlayground.Api.Models;
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingAppTests
+    public class UsingTestServerTests
     {
         private TestServer _testServer;
 
