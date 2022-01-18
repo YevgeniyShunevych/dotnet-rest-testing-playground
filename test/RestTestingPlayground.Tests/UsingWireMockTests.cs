@@ -8,7 +8,7 @@ using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 
-namespace RestTestingPlayground.Tests.Todo
+namespace RestTestingPlayground.Tests
 {
     [TestFixture]
     public class UsingWireMockTests

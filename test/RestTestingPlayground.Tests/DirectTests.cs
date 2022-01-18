@@ -5,7 +5,7 @@ using NUnit.Framework;
 using RestSharp;
 using RestTestingPlayground.Api.Models;
 
-namespace RestTestingPlayground.Tests.Todo
+namespace RestTestingPlayground.Tests
 {
     [TestFixture]
     public class DirectTests

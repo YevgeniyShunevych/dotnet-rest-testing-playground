@@ -11,7 +11,7 @@ using RestSharp;
 using RestTestingPlayground.Api;
 using RestTestingPlayground.Api.Models;
 
-namespace RestTestingPlayground.Tests.Todo
+namespace RestTestingPlayground.Tests
 {
     public class UsingKestrelServerTests
     {
