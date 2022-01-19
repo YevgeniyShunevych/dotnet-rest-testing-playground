@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,10 @@ namespace RestTestingPlayground.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpClient("ExternalService1", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("ExternalServiceUrl"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
