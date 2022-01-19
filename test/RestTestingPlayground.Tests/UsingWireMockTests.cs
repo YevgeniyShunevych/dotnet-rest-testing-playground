@@ -21,7 +21,7 @@ namespace RestTestingPlayground.Tests
         public void SetUp()
         {
             _mockServer = WireMockServer.Start();
-            _restClient = new RestClient($"{_mockServer.Urls[0]}");
+            _restClient = new RestClient(_mockServer.Urls[0]);
         }
 
         [TearDown]
