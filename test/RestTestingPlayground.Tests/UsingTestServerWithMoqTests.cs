@@ -18,7 +18,7 @@ using RestTestingPlayground.Api.Models;
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingTestServerWithWireMockAndHttpClientMockTests
+    public class UsingTestServerWithMoqTests
     {
         private const string ExternalServiceMockUrl = "https://extserv.org";
 
