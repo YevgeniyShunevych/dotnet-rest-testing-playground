@@ -21,7 +21,7 @@ namespace RestTestingPlayground.Api
             services.AddControllers();
             services.AddHttpClient("ExternalService1", httpClient =>
             {
-                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("ExternalServiceUrl"));
+                httpClient.BaseAddress = new Uri(Configuration["ExternalServiceUrl"]);
             });
         }
 
