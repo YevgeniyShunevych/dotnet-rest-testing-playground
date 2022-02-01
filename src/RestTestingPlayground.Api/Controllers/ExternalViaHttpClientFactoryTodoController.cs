@@ -20,12 +20,11 @@ namespace RestTestingPlayground.Api.Controllers
         [HttpGet("{id}")]
         public async Task<TodoItem> Get(int id)
         {
-            using (HttpClient httpClient = _httpClientFactory.CreateClient("ExternalService1"))
-            {
-                RestClient restClient = new RestClient(httpClient, new RestClientOptions(httpClient.BaseAddress));
+            HttpClient httpClient = _httpClientFactory.CreateClient("ExternalService1");
 
-                return await restClient.GetAsync<TodoItem>(new RestRequest($"/todos/{id}"));
-            }
+            RestClient restClient = new RestClient(httpClient, new RestClientOptions(httpClient.BaseAddress));
+
+            return await restClient.GetAsync<TodoItem>(new RestRequest($"/todos/{id}"));
         }
     }
 }
