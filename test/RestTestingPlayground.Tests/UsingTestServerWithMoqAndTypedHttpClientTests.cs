@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,21 +7,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using Moq.Contrib.HttpClient;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using RestSharp;
 using RestTestingPlayground.Api;
 using RestTestingPlayground.Api.Models;
-using RichardSzalay.MockHttp;
+using RestTestingPlayground.Api.Services;
 
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingTestServerWithMockHttpTests
+    public class UsingTestServerWithMoqAndTypedHttpClientTests
     {
         private const string ExternalServiceMockUrl = "https://extserv.org";
 
-        private MockHttpMessageHandler _externalHttpMock;
+        private Mock<HttpMessageHandler> _externalHttpMock;
 
         private TestServer _testServer;
 
@@ -33,14 +34,14 @@ namespace RestTestingPlayground.Tests
         [SetUp]
         public void SetUp()
         {
-            _externalHttpMock = new MockHttpMessageHandler();
+            _externalHttpMock = new Mock<HttpMessageHandler>();
 
             var webHostBuilder = new WebHostBuilder()
                 .UseStartup<Startup>()
                 .ConfigureTestServices(services =>
                 {
-                    services.AddHttpClient("ExternalService1")
-                        .ConfigurePrimaryHttpMessageHandler(() => _externalHttpMock);
+                    services.AddHttpClient<IExternalService, ExternalService>()
+                        .ConfigurePrimaryHttpMessageHandler(() => _externalHttpMock.Object);
                 })
                 .ConfigureAppConfiguration(configurationBuilder =>
                 {
@@ -71,20 +72,20 @@ namespace RestTestingPlayground.Tests
             {
                 Id = 3,
                 UserId = 9,
-                Title = Guid.NewGuid().ToString(),
+                Title = "Some title",
                 Completed = true
             };
 
-            _externalHttpMock.Expect(HttpMethod.Get, ExternalServiceMockUrl + "/todos/1")
-                .Respond("application/json", JsonConvert.SerializeObject(setupItem));
+            _externalHttpMock.SetupRequest(HttpMethod.Get, ExternalServiceMockUrl + "/todos/1")
+                .ReturnsResponse(JsonConvert.SerializeObject(setupItem), "application/json");
 
-            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externalvianamedhttpclienttodos/1"));
+            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externalviatypedhttpclienttodos/1"));
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Data.Should().BeEquivalentTo(setupItem);
 
             // Additionally we can verify that expected requests were executed.
-            _externalHttpMock.VerifyNoOutstandingExpectation();
+            _externalHttpMock.VerifyAll();
         }
     }
 }

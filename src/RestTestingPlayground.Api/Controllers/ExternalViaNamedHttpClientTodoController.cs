@@ -7,12 +7,12 @@ using RestTestingPlayground.Api.Models;
 namespace RestTestingPlayground.Api.Controllers
 {
     [ApiController]
-    [Route("externalviahttpclientfactorytodos")]
-    public class ExternalViaHttpClientFactoryTodoController
+    [Route("externalvianamedhttpclienttodos")]
+    public class ExternalViaNamedHttpClientTodoController
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ExternalViaHttpClientFactoryTodoController(IHttpClientFactory httpClientFactory)
+        public ExternalViaNamedHttpClientTodoController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

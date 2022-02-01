@@ -18,7 +18,7 @@ using RestTestingPlayground.Api.Models;
 namespace RestTestingPlayground.Tests
 {
     [TestFixture]
-    public class UsingTestServerWithMoqTests
+    public class UsingTestServerWithMoqAndNamedHttpClientTests
     {
         private const string ExternalServiceMockUrl = "https://extserv.org";
 
@@ -78,7 +78,7 @@ namespace RestTestingPlayground.Tests
             _externalHttpMock.SetupRequest(HttpMethod.Get, ExternalServiceMockUrl + "/todos/1")
                 .ReturnsResponse(JsonConvert.SerializeObject(setupItem), "application/json");
 
-            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externalviahttpclientfactorytodos/1"));
+            var response = await _restClient.ExecuteGetAsync<TodoItem>(new RestRequest("/externalvianamedhttpclienttodos/1"));
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Data.Should().BeEquivalentTo(setupItem);

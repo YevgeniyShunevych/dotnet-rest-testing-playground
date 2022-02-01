@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RestTestingPlayground.Api.Services;
 
 namespace RestTestingPlayground.Api
 {
@@ -20,6 +21,10 @@ namespace RestTestingPlayground.Api
         {
             services.AddControllers();
             services.AddHttpClient("ExternalService1", httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(Configuration["ExternalServiceUrl"]);
+            });
+            services.AddHttpClient<IExternalService, ExternalService>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(Configuration["ExternalServiceUrl"]);
             });
